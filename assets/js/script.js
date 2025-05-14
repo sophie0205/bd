@@ -42,7 +42,7 @@ letter.addEventListener('click', () => {
   const overlay = document.getElementById('pdf-overlay');
   const frame = document.getElementById('pdf-frame');
 
-  frame.src = 'your_letter.pdf';
+  frame.src = '051525letter.pdf';
   overlay.classList.add('active');
   overlay.style.display = 'flex';
 });

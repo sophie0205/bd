@@ -1,0 +1,214 @@
+body {
+  margin: 0;
+  background: #ffeef1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  font-family: sans-serif;
+}
+
+#cake {
+  width: 150px;
+  transition: transform 1s ease;
+  z-index: 20;
+}
+
+#prompt {
+  position: absolute;
+  bottom: 20%;
+  font-size: 1.2em;
+  color: #333;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
+}
+
+#slice {
+  display: none;
+  position: absolute;
+  bottom: 30%;
+  width: 100px;
+}
+
+#letter {
+  display: none;
+  position: absolute;
+  width: 100px;
+  left: -150px;
+  top: 30%;
+  transition: left 2s ease-in-out;
+}
+
+.shake {
+  animation: shake 0.6s infinite;
+}
+
+@keyframes shake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(3deg); }
+  75% { transform: rotate(-3deg); }
+}
+
+@keyframes flyAway {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-150%) scale(0.5); opacity: 0; }
+}
+
+@keyframes toCenter {
+  0% { left: 50%; transform: translate(-50%, 100%); opacity: 0; }
+  100% { left: 50%; transform: translate(-50%, 0); opacity: 1; }
+}
+
+@keyframes toRightPlate {
+  0% { left: 50%; transform: translate(-50%, 0); }
+  100% { left: 80%; transform: translate(-50%, 20px); }
+}
+
+
+#slice-container {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  bottom: 30%;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  display: none;
+  opacity: 0;
+}
+
+
+#slice {
+  position: absolute;
+  width: 150px;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+#plate {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+@keyframes toRight {
+  0% {
+    transform: translate(-50%, 0);
+    left: 50%;
+  }
+  100% {
+    transform: translate(100%, 20px);
+    left: 50%;
+  }
+}
+
+.bite {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: #ffeef1; /* same as background */
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: none; /* optional soft edge */
+  animation: biteFade 0.6s forwards;
+  z-index: 10;
+}
+
+#pdf-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #ffeef1;
+  display: none;
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+
+#pdf-frame {
+  width: 80vw;  /* or try 90% */
+  height: 90vh;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  background: white;
+  padding: 10px;
+}
+
+
+#pdf-close {
+  position: absolute;
+  top: 10px;
+  right: 80px;
+  font-size: 2em;
+  color: #cc6688;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+
+#pdf-close:hover {
+  color: #ff4d7a;
+  transform: scale(1.2);
+}
+
+.side-image {
+  position: absolute;
+  top: 30%;
+  transform: translateY(-50%);
+  width: 200px; /* adjust size as needed */
+  z-index: 10;
+}
+
+.side-image.left {
+  left: 20vw;
+  transform: rotate(-20deg);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  background: white;
+  padding: 5px;
+}
+
+.side-image.right {
+  right: 20vw;
+  transform: rotate(20deg);
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  background: white;
+  padding: 5px;
+}
+
+/* Hide side images when the PDF overlay is active */
+#pdf-overlay.active ~ .side-image {
+  display: none;
+}
+#flag-banner {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -30%) rotate(-90deg);
+  width: 100%;
+  max-height: 500px; /* Adjust as needed */
+  object-fit: contain;
+  z-index: -10;
+}
+
+/* Hide the flag when PDF overlay is active */
+#pdf-overlay.active ~ #flag-banner {
+  display: none;
+}

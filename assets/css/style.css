@@ -22,7 +22,6 @@ body {
   font-size: 1.2em;
   color: #333;
   animation: pulse 1.5s infinite;
-  display: none;
 }
 
 @keyframes pulse {
